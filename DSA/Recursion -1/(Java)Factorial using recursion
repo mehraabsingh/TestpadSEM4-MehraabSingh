@@ -1,0 +1,27 @@
+class Result {
+    /*
+     * Complete the function 'factorial' given below
+     * @params
+     *  n -> an integer whose factorial is to be calculated
+     * @return
+     *  The factorial of integer n
+     */
+    static int factorial(int n) {
+        // Base case: factorial of 0 or 1 is 1
+        if (n == 0 || n == 1) {
+            return 1;
+        }
+        // Recursive case: n * factorial of (n-1)
+        return n * factorial(n - 1);
+    }
+    public static void main(String[] args) {
+        java.util.Scanner sc = new java.util.Scanner(System.in);
+        int T = sc.nextInt();  // Number of test cases
+        // Process each test case
+        for (int i = 0; i < T; i++) {
+            int n = sc.nextInt();  // Read the integer n
+            System.out.println(factorial(n));  // Print the factorial of n
+        }
+        sc.close();
+    }
+}
