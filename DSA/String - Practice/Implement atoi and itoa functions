@@ -1,0 +1,35 @@
+class Result {
+    static String itoa(int num) {
+        if (num == 0) {
+            return "0";
+        }
+        if (num < 0) {
+            return "-" + itoa(-num);
+        }
+        if (num < 10) {
+            return String.valueOf((char) ('0' + num));
+        }
+        return itoa(num / 10) + (char) ('0' + (num % 10));
+    }
+    static int atoi(String str) {
+        str = str.trim().replace("\"", "");
+        boolean isNegative = false;
+        if (str.charAt(0) == '-') {
+            isNegative = true;
+            str = str.substring(1);
+        }
+        int result = atoiHelper(str, 0, 0);
+        return isNegative ? -result : result;
+    }
+    private static int atoiHelper(String str, int index, int result) {
+        if (index == str.length()) {
+            return result;
+        }
+        char ch = str.charAt(index);
+        if (ch >= '0' && ch <= '9') {
+            result = result * 10 + (ch - '0');
+            return atoiHelper(str, index + 1, result);
+        }
+        return result;
+    }
+}
