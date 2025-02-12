@@ -1,0 +1,9 @@
+class Result {
+    static int isRotation(String str1, String str2) {
+        if (str1.length() != str2.length()) {
+            return 0;
+        }
+        String concatenated = str2 + str2;
+        return concatenated.contains(str1) ? 1 : 0;
+    }
+}
