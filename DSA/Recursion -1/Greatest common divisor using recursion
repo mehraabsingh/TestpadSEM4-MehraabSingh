@@ -1,0 +1,18 @@
+class Result {
+    static int gcd(int i, int j) {
+        if (j == 0) return i;
+        return gcd(j, i % j);
+    }
+}
+class GCDCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = Integer.parseInt(sc.nextLine().trim());
+        while (T-- > 0) {
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            System.out.println(Result.gcd(a, b));
+        }
+        sc.close();
+    }
+}
