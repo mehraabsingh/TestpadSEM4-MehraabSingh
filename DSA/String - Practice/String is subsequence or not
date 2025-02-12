@@ -1,0 +1,19 @@
+class Result {
+    static boolean strSubsequence(String str1, String str2) {
+        int m = str1.length();
+        int n = str2.length();
+        if (n > m) {
+            return false;
+        }
+        int j = 0;
+        for (int i = 0; i < m; i++) {
+            if (j < n && str1.charAt(i) == str2.charAt(j)) {
+                j++;
+            }
+            if (j == n) {
+                return true;
+            }
+        }
+        return j == n;
+    }
+}
