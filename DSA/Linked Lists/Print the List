@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void forwardPrint(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d-", temp->data);
+        temp = temp->next;
+    }
+}
+
+void backwardPrint(struct Node* head) {
+    if (head == NULL) return;
+    backwardPrint(head->next);
+    printf("%d-", head->data);
+}
+
+ 
