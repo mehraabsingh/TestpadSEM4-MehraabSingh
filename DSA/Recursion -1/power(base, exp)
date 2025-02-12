@@ -1,0 +1,8 @@
+class Result {
+    static long power(int base, int exp) {
+        if (exp < 0) return -1;
+        if (exp == 0) return 1;
+        long halfPower = power(base, exp / 2);
+        return (exp % 2 == 0) ? halfPower * halfPower : halfPower * halfPower * base;
+    }
+}
