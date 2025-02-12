@@ -1,0 +1,10 @@
+int evenDigits(int n) {
+    if (n == 0) return 0;
+    int lastDigit = n % 10;
+    int remaining = evenDigits(n / 10);
+    if (lastDigit % 2 == 0) {
+        return remaining * 10 + lastDigit;
+    } else {
+        return remaining;
+    }
+}
