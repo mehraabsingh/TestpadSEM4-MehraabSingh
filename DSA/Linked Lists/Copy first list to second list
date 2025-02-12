@@ -1,0 +1,15 @@
+Node* Node::copyList() {
+    if (!this) return nullptr;
+    
+    Node* newHead = new Node(this->data);
+    Node* current = this->next;
+    Node* newCurrent = newHead;
+
+    while (current) {
+        newCurrent->next = new Node(current->data);
+        newCurrent = newCurrent->next;
+        current = current->next;
+    }
+
+    return newHead;
+}
