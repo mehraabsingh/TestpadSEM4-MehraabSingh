@@ -1,0 +1,25 @@
+class Result {
+  static LinkList insertSorted(LinkList head, int data) {
+    LinkList newNode = new LinkList(data);
+
+    if (head == null) {
+      newNode.next = newNode;
+      return newNode;
+    }
+
+    LinkList curr = head, prev = null;
+    do {
+      if (curr.data <= data && (curr.next == head || curr.next.data > data)) {
+        newNode.next = curr.next;
+        curr.next = newNode;
+        return data < head.data ? newNode : head;
+      }
+      prev = curr;
+      curr = curr.next;
+    } while (curr != head);
+
+    newNode.next = head;
+    prev.next = newNode;
+    return data < head.data ? newNode : head;
+  }
+}
