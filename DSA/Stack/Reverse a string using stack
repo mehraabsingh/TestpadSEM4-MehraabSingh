@@ -1,0 +1,10 @@
+static String reverseString(CQStack s, String st) {
+  for (char c : st.toCharArray()) {
+    s.push(c);
+  }
+  StringBuilder reversed = new StringBuilder();
+  while (!s.isEmpty()) {
+    reversed.append((char) s.pop());
+  }
+  return reversed.toString();
+}
