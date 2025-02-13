@@ -1,0 +1,20 @@
+static void printAllPaths(Node root) {
+    if (root == null) return;
+    List<Integer> path = new ArrayList<>();
+    List<String> result = new ArrayList<>();
+    findPaths(root, path, result);
+    for (String s : result) System.out.println(s);
+    System.out.println(result.size());
+}
+
+static void findPaths(Node node, List<Integer> path, List<String> result) {
+    if (node == null) return;
+    path.add(node.data);
+    if (node.left == null && node.right == null) {
+        result.add(String.join(" ", path.stream().map(String::valueOf).toArray(String[]::new)) + " " + (path.size() - 1));
+    } else {
+        findPaths(node.left, path, result);
+        findPaths(node.right, path, result);
+    }
+    path.remove(path.size() - 1);
+}
