@@ -1,0 +1,14 @@
+class Result {
+  static int countNodes(Node head) {
+    if (head == null) return 0;
+
+    int count = 0;
+    Node temp = head;
+    do {
+      count++;
+      temp = temp.next;
+    } while (temp != head);
+
+    return count;
+  }
+}
