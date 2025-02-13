@@ -1,0 +1,32 @@
+import java.util.*;
+
+class Result {
+  static Node buildSearchTree(int t[], int n) {
+    if (n == 0) return null;
+    
+    Node root = new Node(t[0]);
+    
+    for (int i = 1; i < n; i++) {
+      insert(root, t[i]);
+    }
+    
+    return root;
+  }
+
+  static void insert(Node root, int data) {
+    Node parent = null, current = root;
+    
+    while (current != null) {
+      parent = current;
+      if (data < current.data) 
+        current = current.leftChild;
+      else 
+        current = current.rightChild;
+    }
+    
+    if (data < parent.data) 
+      parent.leftChild = new Node(data);
+    else 
+      parent.rightChild = new Node(data);
+  }
+}
