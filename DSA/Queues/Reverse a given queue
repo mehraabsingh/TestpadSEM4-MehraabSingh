@@ -1,0 +1,11 @@
+static void reverseQueue(QueueArray q){
+  Stack<Integer> stack = new Stack<>();
+  while (true) {
+    int val = q.dequeue();
+    if (val == -1) break;
+    stack.push(val);
+  }
+  while (!stack.isEmpty()) {
+    q.enqueue(stack.pop());
+  }
+}
