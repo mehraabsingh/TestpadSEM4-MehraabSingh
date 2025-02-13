@@ -1,0 +1,22 @@
+class Result {
+  static int checkPalindrome(Node head) {
+    if (head == null) return 0;
+    
+    ArrayList<Integer> list = new ArrayList<>();
+    Node temp = head;
+    
+    while (temp != null) {
+      list.add(temp.data);
+      temp = temp.next;
+    }
+    
+    int left = 0, right = list.size() - 1;
+    while (left < right) {
+      if (!list.get(left).equals(list.get(right))) return 0;
+      left++;
+      right--;
+    }
+    
+    return 1;
+  }
+}
