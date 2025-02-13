@@ -1,0 +1,27 @@
+static LinkList deleteBeg(LinkList head) {
+    if (head == null || head.next == head) {
+        return null;
+    }
+
+    LinkList temp = head;
+    while (temp.next != head) {
+        temp = temp.next;
+    }
+
+    temp.next = head.next;
+    return head.next;
+}
+
+static LinkList deleteEnd(LinkList head) {
+    if (head == null || head.next == head) {
+        return null;
+    }
+
+    LinkList temp = head;
+    while (temp.next.next != head) {
+        temp = temp.next;
+    }
+
+    temp.next = head;
+    return head;
+}
