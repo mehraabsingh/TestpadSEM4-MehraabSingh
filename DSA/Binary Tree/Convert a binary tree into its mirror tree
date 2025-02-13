@@ -1,0 +1,7 @@
+static Node findMirror(Node root) {
+  if (root == null) return null;
+  Node temp = root.left;
+  root.left = findMirror(root.right);
+  root.right = findMirror(temp);
+  return root;
+}
