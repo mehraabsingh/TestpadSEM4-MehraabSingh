@@ -1,0 +1,21 @@
+#!/bin/bash
+verifyPrime() {
+    num=$1
+    if ! [[ "$num" =~ ^[0-9]+$ ]]; then
+        return
+    fi
+    if [ "$num" -lt 2 ]; then
+        echo "NOT PRIME"
+        return
+    fi
+    for ((i=2; i*i<=num; i++))
+    do
+        if ((num % i == 0)); then
+            echo "NOT PRIME"
+            return
+        fi
+    done
+    echo "PRIME"
+}
+read -p "Enter a number: " number
+verifyPrime "$number"
