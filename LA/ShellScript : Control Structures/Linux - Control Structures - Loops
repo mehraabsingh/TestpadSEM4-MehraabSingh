@@ -1,0 +1,10 @@
+read N
+even_count=0
+for (( i=0; i<N; i++ ))
+do
+    read num  
+    if (( num % 2 == 0 )); then  
+        ((even_count++)) 
+    fi
+done
+echo $even_count
