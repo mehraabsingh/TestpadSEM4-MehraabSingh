@@ -1,0 +1,6 @@
+read -p "Enter a number: " number
+counter=$number
+while [ $counter -ge 1 ]; do
+    echo $counter  
+    ((counter--)) 
+done
