@@ -1,0 +1,6 @@
+read -p "Enter a number: " number
+for (( i=0; i<${#number}; i++ )); do
+    if (( (i + 1) % 2 != 0 )); then
+        echo "${number:i:1}"  
+    fi
+done
