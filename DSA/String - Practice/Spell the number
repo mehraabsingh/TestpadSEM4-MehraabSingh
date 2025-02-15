@@ -1,1 +1,89 @@
-NOT DONE YET
+//ONE TEST CASE ONLY WORKING
+
+class Result {
+    static void intToWord(int n) {
+        if (n == 0) {
+            System.out.print("zero");
+            return;
+        }
+
+        String[] units = {
+            "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+        };
+        String[] teens = {
+            "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", 
+            "seventeen", "eighteen", "nineteen"
+        };
+        String[] tens = {
+            "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
+        };
+        
+        StringBuilder result = new StringBuilder();
+
+        // Handle lakhs and thousands
+        if (n >= 100000) {
+            result.append(units[n / 100000]).append(" lakh ");
+            n %= 100000;
+        }
+        if (n >= 1000) {
+            result.append(intToWordHelper(n / 1000)).append(" thousand ");
+            n %= 1000;
+        }
+        // Handle hundreds
+        if (n >= 100) {
+            result.append(units[n / 100]).append(" hundred ");
+            n %= 100;
+        }
+        // Handle tens and units
+        if (n > 0) {
+            if (n < 10) {
+                result.append(units[n]);
+            } else if (n < 20) {
+                result.append(teens[n - 10]);
+            } else {
+                result.append(tens[n / 10]);
+                if (n % 10 > 0) {
+                    result.append(" ").append(units[n % 10]);
+                }
+            }
+        }
+
+        // Trim the result to remove any trailing spaces
+        System.out.print(result.toString().trim());
+    }
+
+    private static String intToWordHelper(int n) {
+        String[] units = {
+            "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"
+        };
+        String[] teens = {
+            "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", 
+            "seventeen", "eighteen", "nineteen"
+        };
+        String[] tens = {
+            "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
+        };
+
+        StringBuilder result = new StringBuilder();
+
+        if (n >= 100) {
+            result.append(units[n / 100]).append(" hundred ");
+            n %= 100;
+        }
+        if (n > 0) {
+            if (n < 10) {
+                result.append(units[n]);
+            } else if (n < 20) {
+                result.append(teens[n - 10]);
+            } else {
+                result.append(tens[n / 10]);
+                if (n % 10 > 0) {
+                    result.append(" ").append(units[n % 10]);
+                }
+            }
+        }
+
+        return result.toString().trim();
+    }
+}
+//ONE TEST CASE ONLY WORKING
