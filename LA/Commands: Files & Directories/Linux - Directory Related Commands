@@ -1,0 +1,6 @@
+# Write your script here
+mkdir students
+cd students
+mkdir John Tom
+cd ..
+rm -r marks
