@@ -1,1 +1,17 @@
-NOT DONE YET
+void reverseKelementsQueue(int q[], int K) {
+    if (K <= 0 || front == -1) return;
+
+    int stack[SIZE], top = -1;
+
+    for (int i = 0; i < K && front <= rear; i++) {
+        stack[++top] = dequeue();
+    }
+
+    for (int i = 0; i < K; i++) {
+        enqueue(stack[top--]);
+    }
+
+    for (int i = 0; i < (rear - front + 1) - K; i++) {
+        enqueue(dequeue());
+    }
+}
