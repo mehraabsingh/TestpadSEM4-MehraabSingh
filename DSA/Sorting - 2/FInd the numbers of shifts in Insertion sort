@@ -1,1 +1,29 @@
-NOT DONE YET
+#include <stdio.h>
+
+int main() {
+    int T;
+    scanf("%d", &T);
+
+    while (T--) {
+        int N;
+        scanf("%d", &N);
+
+        int arr[N], shifts = 0;
+        for (int i = 0; i < N; i++) scanf("%d", &arr[i]);
+
+        for (int i = 1; i < N; i++) {
+            int key = arr[i], j = i - 1;
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                shifts++;
+                j--;
+            }
+            arr[j + 1] = key;
+            if (j + 1 != i) shifts++;
+        }
+
+        printf("%d\n", shifts);
+    }
+
+    return 0;
+}
