@@ -1,1 +1,17 @@
-NOT DONE YET
+//ONE TEST CASE NOT RUNNING
+void inorder(struct Node* root, int* count, int k, int* result) {
+    if (!root || *count >= k) return;
+    inorder(root->left, count, k, result);
+    if (++(*count) == k) {
+        *result = root->data;
+        return;
+    }
+    inorder(root->right, count, k, result);
+}
+
+int kSmallest(struct Node* root, int k) {
+    int count = 0, result = -1;
+    inorder(root, &count, k, &result);
+    return result;
+}
+//ONE TEST CASE NOT RUNNING
