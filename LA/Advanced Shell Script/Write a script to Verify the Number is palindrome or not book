@@ -1,0 +1,13 @@
+#!/bin/bash
+verifyPalindrome() {
+    num=$1
+    reversed=$(echo "$num" | rev)
+    if [ "$num" == "$reversed" ]; then
+        echo "Yes"
+    else
+        echo "No"
+    fi
+}
+if [ $# -eq 1 ]; then
+    verifyPalindrome "$1"
+fi
