@@ -1,1 +1,28 @@
-NOT DONE YET
+int minStack[SIZE], minTop = -1;
+
+void push(int item) {
+    if (!isFull()) {
+        Stack[++top] = item;
+        if (minTop == -1 || item <= minStack[minTop]) {
+            minStack[++minTop] = item;
+        }
+    }
+}
+
+int pop() {
+    if (!isEmpty()) {
+        int poppedItem = Stack[top--];
+        if (poppedItem == minStack[minTop]) {
+            minTop--;
+        }
+        return poppedItem;
+    }
+    return -1;
+}
+
+int getMin() {
+    if (minTop != -1) {
+        return minStack[minTop];
+    }
+    return -1;
+}
