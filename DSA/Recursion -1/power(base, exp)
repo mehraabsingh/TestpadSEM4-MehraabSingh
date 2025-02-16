@@ -6,3 +6,18 @@ class Result {
         return (exp % 2 == 0) ? halfPower * halfPower : halfPower * halfPower * base;
     }
 }
+
+
+// if the above does not work
+
+int power(int base, int exponent) {
+    if (exponent < 0) return -1;  // Return -1 for negative exponents
+    if (exponent == 0) return 1;  // Base case: anything raised to 0 is 1
+    
+    int halfPower = power(base, exponent / 2);
+    
+    if (exponent % 2 == 0)
+        return halfPower * halfPower;
+    else
+        return base * halfPower * halfPower;
+}
