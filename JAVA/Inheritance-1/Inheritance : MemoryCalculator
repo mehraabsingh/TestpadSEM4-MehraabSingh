@@ -1,0 +1,33 @@
+class MemoryCalculator extends Calculator {
+    private HashMap<Integer, Integer> memoizedPrimes;
+    private int computeCount;
+    private int memoCount;
+
+    public MemoryCalculator(int seed) {
+        super(seed);
+        this.memoizedPrimes = new HashMap<>();
+        this.computeCount = 0;
+        this.memoCount = 0;
+    }
+
+    @Override
+    public int kthPrime(int k) {
+        if (memoizedPrimes.containsKey(k)) {
+            memoCount++;
+            return memoizedPrimes.get(k);
+        } else {
+            int prime = super.kthPrime(k);
+            memoizedPrimes.put(k, prime);
+            computeCount++;
+            return prime;
+        }
+    }
+
+    public int getComputeCount() {
+        return computeCount;
+    }
+
+    public int getMemoCount() {
+        return memoCount;
+    }
+}
