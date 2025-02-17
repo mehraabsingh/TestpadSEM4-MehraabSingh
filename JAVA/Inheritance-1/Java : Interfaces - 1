@@ -1,0 +1,49 @@
+class Car implements Vehicle {
+    private int gear;
+    private int speed;
+
+    @Override
+    public void changeGear(int a) {
+        gear = a;
+    }
+
+    @Override
+    public void speedUp(int a) {
+        speed += a;
+    }
+
+    @Override
+    public void applyBrakes(int a) {
+        speed -= a;
+    }
+
+    @Override
+    public String toString() {
+        return speed + "kmph";
+    }
+}
+
+class Bike implements Vehicle {
+    private int gear;
+    private int speed;
+
+    @Override
+    public void changeGear(int a) {
+        gear = a;
+    }
+
+    @Override
+    public void speedUp(int a) {
+        speed += a;
+    }
+
+    @Override
+    public void applyBrakes(int a) {
+        speed -= a;
+    }
+
+    @Override
+    public String toString() {
+        return speed + "kmph";
+    }
+}
