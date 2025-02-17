@@ -1,0 +1,47 @@
+import java.util.Scanner;
+
+class Bill {
+    int itemPrice, quantity;
+    
+    void getBill(int price, int qty) {
+        this.itemPrice = price;
+        this.quantity = qty;
+    }
+    
+    int calculateBill() {
+        return itemPrice * quantity;
+    }
+}
+
+class Cash extends Bill {
+    int notes2000, notes500, notes100, notes50, notes10;
+    
+    void get_cash() {
+        Scanner sc = new Scanner(System.in);
+        itemPrice = sc.nextInt();
+        quantity = sc.nextInt();
+        notes2000 = sc.nextInt();
+        notes500 = sc.nextInt();
+        notes100 = sc.nextInt();
+        notes50 = sc.nextInt();
+        notes10 = sc.nextInt();
+        sc.close();
+    }
+    
+    void display() {
+        int billAmount = calculateBill();
+        int totalCash = (notes2000 * 2000) + (notes500 * 500) + (notes100 * 100) + (notes50 * 50) + (notes10 * 10);
+        
+        if (totalCash >= billAmount) {
+            System.out.println("Clear");
+        } else {
+            System.out.println("Need to pay: " + (billAmount - totalCash));
+        }
+    }
+    
+    public static void main(String[] args) {
+        Cash obj = new Cash();
+        obj.get_cash();
+        obj.display();
+    }
+}
