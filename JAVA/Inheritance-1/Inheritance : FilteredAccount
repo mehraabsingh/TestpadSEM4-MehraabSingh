@@ -1,0 +1,21 @@
+class FilteredAccount extends Account {
+    private int filteredCount = 0;
+
+    public FilteredAccount(int accno) {
+        super(accno);
+    }
+
+    @Override
+    public boolean process(Transaction t) {
+        if (t.value() == 0) {
+            filteredCount++;
+            return true;
+        } else {
+            return super.process(t);
+        }
+    }
+
+    public int filtered() {
+        return filteredCount;
+    }
+}
