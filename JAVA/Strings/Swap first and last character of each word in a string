@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Result {
+  
+  static String swapFirstLastChar(String str) {
+    String[] words = str.split(" ");
+    StringBuilder result = new StringBuilder();
+    
+    for (String word : words) {
+      if (word.length() == 1) {
+        result.append(word).append(" ");
+      } else {
+        char firstChar = word.charAt(0);
+        char lastChar = word.charAt(word.length() - 1);
+        String swappedWord = lastChar + word.substring(1, word.length() - 1) + firstChar;
+        result.append(swappedWord).append(" ");
+      }
+    }
+    
+    return result.toString().trim();
+  }
+  
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int T = scanner.nextInt();
+    scanner.nextLine();
+    
+    for (int i = 0; i < T; i++) {
+      String input = scanner.nextLine();
+      String output = swapFirstLastChar(input);
+      System.out.println(output);
+    }
+    
+    scanner.close();
+  }
+}
