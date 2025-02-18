@@ -1,0 +1,35 @@
+static void replaceTabs(String input, String output) {
+    try {
+        BufferedReader reader = new BufferedReader(new FileReader(input));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(output));
+
+        String line;
+        while ((line = reader.readLine()) != null) {
+            StringBuilder newLine = new StringBuilder();
+            int currentPosition = 0;
+
+            for (int i = 0; i < line.length(); i++) {
+                char ch = line.charAt(i);
+
+                if (ch == '\t') {
+                    int spacesToAdd = 8 - (currentPosition % 8);
+                    for (int j = 0; j < spacesToAdd; j++) {
+                        newLine.append(' ');
+                    }
+                    currentPosition += spacesToAdd;
+                } else {
+                    newLine.append(ch);
+                    currentPosition++;
+                }
+            }
+
+            writer.write(newLine.toString());
+            writer.newLine();
+        }
+
+        reader.close();
+        writer.close();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
