@@ -1,36 +1,19 @@
-class A {
-    public void m1() {
-        System.out.println("Coding");
+class C extends B 
+{
+    @Override
+    public void m1() 
+    {
+        super.m1();  // Inherits the m1() method behavior from class B
     }
-    public void m2() {
-        System.out.println("Quotient");
-    }
-    public String toString() {
-        return "cq";
-    }
-}
-
-class B extends A {
-    public void m1() {
+    @Override
+    public void m2() 
+    {
         System.out.println("Code");
-    }
-    public String toString() {
-        return (super.toString() + super.toString());
-    }
-}
-
-class C extends B {
-    @Override
-    public void m1() {
-        super.m1();
+        super.m2();  // Inherits the m2() method behavior from class A
     }
     @Override
-    public void m2() {
-        System.out.println("Code");
-        super.m2();
-    }
-    @Override
-    public String toString() {
-        return "new" + super.toString();
+    public String toString() 
+    {
+        return "new" + super.toString();  // Inherits the toString() method behavior from class B and adds "new" at the beginning
     }
 }
