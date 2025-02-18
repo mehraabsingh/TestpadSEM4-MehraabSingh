@@ -1,0 +1,23 @@
+static void flipHalfQueue(Queue<Integer> q) {
+    Stack<Integer> stack = new Stack<>();
+    int size = q.size();
+
+    // Store odd-indexed elements in the stack
+    for (int i = 0; i < size; i++) {
+        int element = q.poll();
+        if (i % 2 == 1) {
+            stack.push(element);
+        }
+        q.add(element);
+    }
+
+    // Reinsert elements from the stack to the queue in reverse order
+    for (int i = 0; i < size; i++) {
+        int element = q.poll();
+        if (i % 2 == 1) {
+            q.add(stack.pop());
+        } else {
+            q.add(element);
+        }
+    }
+}
