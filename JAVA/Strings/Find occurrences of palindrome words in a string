@@ -1,0 +1,23 @@
+static int countPalindrome(String str) {
+    int count = 0;
+    String[] words = str.split("\\s+"); // Split words by spaces
+    for (String word : words) {
+        if (isPalindrome(word)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+static boolean isPalindrome(String word) {
+    word = word.toLowerCase(); // Convert to lowercase for case-insensitive comparison
+    int left = 0, right = word.length() - 1;
+    while (left < right) {
+        if (word.charAt(left) != word.charAt(right)) {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
