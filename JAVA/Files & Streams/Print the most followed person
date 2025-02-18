@@ -1,1 +1,42 @@
-NOT DONE YET
+import java.io.*;
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String fileName = scanner.nextLine();
+        printMostFollowed(fileName);
+        scanner.close();
+    }
+
+    public static void printMostFollowed(String fileName) {
+        Map<String, Set<String>> followersMap = new HashMap<>();
+        Map<String, Integer> followerCounts = new HashMap<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("\\s+");
+                String follower = parts[0];
+                String followee = parts[1];
+
+                followersMap.putIfAbsent(followee, new HashSet<>());
+                followersMap.putIfAbsent(follower, new HashSet<>());
+                followersMap.get(followee).add(follower);
+            }
+
+            for (String user : followersMap.keySet()) {
+                int popularity = 0;
+                for (String follower : followersMap.get(user)) {
+                    popularity += followersMap.get(follower).size();
+                }
+                followerCounts.put(user, popularity);
+            }
+
+            String mostFollowed = Collections.max(followerCounts.entrySet(), Map.Entry.comparingByValue()).getKey();
+            System.out.println(mostFollowed);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
