@@ -1,0 +1,21 @@
+import java.io.*;
+
+static void appendFiles(String f1, String f2, String f3)
+{
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(f3, true))) {
+        appendFileContents(f1, writer);
+        appendFileContents(f2, writer);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
+private static void appendFileContents(String fileName, BufferedWriter writer) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+            writer.write(line);
+            writer.newLine();
+        }
+    }
+}
