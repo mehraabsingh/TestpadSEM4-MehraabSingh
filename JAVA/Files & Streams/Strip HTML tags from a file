@@ -1,0 +1,37 @@
+import java.util.Scanner;
+import java.io.*;
+// Other imports go here
+// Do NOT change the class name
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String fileName = scanner.nextLine();
+        stripHtmlTags(fileName);
+        scanner.close();
+    }
+
+    public static void stripHtmlTags(String fileName) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            StringBuilder content = new StringBuilder();
+            String line;
+            boolean inTag = false;
+            
+            while ((line = reader.readLine()) != null) {
+                for (char ch : line.toCharArray()) {
+                    if (ch == '<') {
+                        inTag = true;
+                    } else if (ch == '>') {
+                        inTag = false;
+                    } else if (!inTag) {
+                        content.append(ch);
+                    }
+                }
+                content.append('\n');
+            }
+
+            System.out.println(content.toString().trim());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
