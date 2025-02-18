@@ -1,0 +1,9 @@
+public static boolean hasDuplicateMappings(Map<String, String> map) {
+    HashSet<String> values = new HashSet<>();
+    for (String value : map.values()) {
+        if (!values.add(value)) {
+            return true;
+        }
+    }
+    return false;
+}
