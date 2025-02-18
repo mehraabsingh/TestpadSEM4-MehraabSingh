@@ -1,0 +1,10 @@
+import java.util.Queue;
+
+static void doubleQueue(Queue<Integer> q) {
+    int originalSize = q.size();
+    for (int i = 0; i < originalSize; i++) {
+        int element = q.poll();
+        q.add(element);
+        q.add(element);
+    }
+}
