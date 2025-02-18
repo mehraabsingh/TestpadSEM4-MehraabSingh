@@ -1,0 +1,41 @@
+import java.util.Scanner;
+import java.io.*;
+// Other imports go here
+// Do NOT change the class name
+class Main{
+    public static void main(String[] args)
+    {
+        Scanner scanner = new Scanner(System.in);
+        String fileName = scanner.nextLine();
+        int width = scanner.nextInt();
+        printPoemWithStars(fileName, width);
+        scanner.close();
+    }
+    
+    public static void printPoemWithStars(String fileName, int width) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            String border = "*".repeat(width);
+            System.out.println(border);
+            
+            while ((line = reader.readLine()) != null) {
+                String titleCaseLine = toTitleCase(line);
+                if (titleCaseLine.length() > width - 2) {
+                    titleCaseLine = titleCaseLine.substring(0, width - 2);
+                }
+                System.out.printf("*%-" + (width - 2) + "s*\n", titleCaseLine);
+            }
+            
+            System.out.println(border);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private static String toTitleCase(String line) {
+        if (line.isEmpty()) {
+            return line;
+        }
+        return line.substring(0, 1).toUpperCase() + line.substring(1).toLowerCase();
+    }
+}
