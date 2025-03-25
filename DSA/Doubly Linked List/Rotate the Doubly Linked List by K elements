@@ -1,42 +1,22 @@
-//ONLY ONE TEST CASE IS RUNNING 
-Node* rotateByK(Node* head, int k) {
-    if (!head || k == 0) return head; // Edge case: empty list or no rotation
-
-    // Step 1: Calculate the length of the list
-    Node* temp = head;
-    int length = 0;
-    while (temp) {
+static LinkList rotateByK(LinkList head, int k) {
+    if (head == null || k == 0) return head;
+    LinkList current = head;
+    int length = 1;
+    while (current.next != null) {
+        current = current.next;
         length++;
-        temp = temp->next;
     }
-
-    // Step 2: Adjust k if it's greater than length
     k = k % length;
-    if (k == 0) return head; // No rotation needed
-
-    // Step 3: Find the new head after k rotations
-    temp = head;
-    for (int i = 0; i < k; i++) {
-        temp = temp->next;
+    if (k == 0) return head;
+    LinkList kthNode = head;
+    for (int i = 1; i < length - k; i++) {
+        kthNode = kthNode.next;
     }
-
-    // Step 4: Update pointers
-    Node* newHead = temp; // This will be the new head
-    Node* newTail = temp->prev; // This will be the new tail
-
-    // Connect the new tail to the old head
-    newTail->next = nullptr; // Break the link
-    head->prev = newTail; // Connect old head to new tail
-
-    // Connect the new head to the old tail
-    Node* oldTail = newTail;
-    while (oldTail->next) {
-        oldTail = oldTail->next;
-    }
-    oldTail->next = head; // Connect old tail to old head
-    head->prev = oldTail; // Connect old head to old tail
-
-    return newHead; // Return the new head of the rotated list
+    LinkList newHead = kthNode.next;
+    if (newHead == null) return head;
+    kthNode.next = null;
+    newHead.prev = null;
+    current.next = head;
+    head.prev = current;
+    return newHead;
 }
-
-//ONLY ONE TEST CASE IS RUNNING 
