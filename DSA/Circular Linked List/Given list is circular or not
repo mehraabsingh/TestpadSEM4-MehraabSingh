@@ -1,25 +1,17 @@
-//ONLY ONE TEST CASE IS RUNNING
-int isCircular(struct Node* head) {
-    // If the list is empty, consider it as circular
-    if (head == NULL) {
-        return 1;
-    }
-
-    struct Node* slow = head; // Tortoise
-    struct Node* fast = head; // Hare
-
-    // Move slow by 1 and fast by 2
-    while (fast != NULL && fast->next != NULL) {
-        slow = slow->next;          // Move slow by 1
-        fast = fast->next->next;   // Move fast by 2
-
-        // If they meet, there is a cycle
+static int isCircular(Node head) {
+    if (head == null) return 1; // An empty list is circular by definition
+    Node slow = head, fast = head;
+    while (fast != null && fast.next != null) {
+        slow = slow.next;         // Move slow by 1 step
+        fast = fast.next.next;    // Move fast by 2 steps
         if (slow == fast) {
-            return 1; // Circular
+            // If slow meets fast, check if it loops back to head
+            Node check = slow;
+            while (check.next != head && check.next != slow) {
+                check = check.next;
+            }
+            return (check.next == head) ? 1 : 0;
         }
     }
-
-    // If we reach here, then there is no cycle
-    return 0; // Not circular
+    return 0; // No cycle found, so it's not circular
 }
-//ONLY ONE TEST CASE IS RUNNING
